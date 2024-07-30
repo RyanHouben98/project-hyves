@@ -7,6 +7,8 @@ It is time to bring mach the dancing banana!
 - [x] Initial project setup (NextJs + Tailwind)
 - [x] Drizzle implementation.
 - [x] AuthJs implementation.
+- [ ] Create sign up page.
+- [ ] Create sign in page.
 - [ ] Creating a personal profile.
 - [ ] Personalize profiles page.
 - [ ] Creating group pages.
