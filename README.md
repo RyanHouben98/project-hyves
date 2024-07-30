@@ -8,8 +8,10 @@ It is time to bring mach the dancing banana!
 - [x] Drizzle implementation.
 - [x] AuthJs implementation.
 - [x] Add ShadCN ui.
-- [ ] Create sign up page.
+- [x] Create sign up page.
 - [ ] Create sign in page.
+- [ ] Create sign up server action.
+- [ ] Create sign in server action.
 - [ ] Creating a personal profile.
 - [ ] Personalize profiles page.
 - [ ] Creating group pages.
