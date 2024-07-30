@@ -14,7 +14,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         let user = null;
 
-        // return user object with their profile data
         return user;
       },
     }),
