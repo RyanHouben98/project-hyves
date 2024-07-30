@@ -5,7 +5,7 @@ It is time to bring mach the dancing banana!
 ## Key features
 
 - [x] Initial project setup (NextJs + Tailwind)
-- [ ] Drizzle implementation.
+- [x] Drizzle implementation.
 - [ ] Creating a personal profile.
 - [ ] Personalize profiles page.
 - [ ] Creating group pages.
@@ -16,3 +16,17 @@ It is time to bring mach the dancing banana!
 - [ ] Group chat functionality.
 - [ ] Post management.
 - [ ] Emoji management.
+
+## Drizzle ORM
+
+Generate migration:
+
+```
+npx drizzle-kit generate
+```
+
+Push migrations:
+
+```
+npx drizzle-kit push
+```
