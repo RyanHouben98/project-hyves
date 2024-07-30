@@ -1,7 +1,9 @@
 # project-hyves
+
 It is time to bring mach the dancing banana!
 
 ## Key features
+
 - [] Creating a personal profile.
 - [] Personalize profiles page.
 - [] Creating group pages.
@@ -12,4 +14,3 @@ It is time to bring mach the dancing banana!
 - [] Group chat functionality.
 - [] Post management.
 - [] Emoji management.
- 
