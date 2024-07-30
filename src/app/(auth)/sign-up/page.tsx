@@ -22,6 +22,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import z from "zod";
+import action from "./(actions)/action";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   firstName: z.string().min(1),
@@ -32,6 +35,9 @@ const schema = z.object({
 });
 
 export default function SignUpPage() {
+  const { toast } = useToast();
+  const { push } = useRouter();
+
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -43,8 +49,30 @@ export default function SignUpPage() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof schema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof schema>) => {
+    if (values.password !== values.confirmPassword) {
+      toast({
+        title: "Oops, something went wrong!",
+        description: "The passwords do not match.",
+      });
+    }
+
+    try {
+      const result = await action(values);
+
+      if (result && !result.status) {
+        toast({
+          title: "Oops, something went wrong!",
+          description: result.message,
+        });
+
+        return;
+      }
+
+      push("/sign-in");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
