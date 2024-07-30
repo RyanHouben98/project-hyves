@@ -9,7 +9,7 @@ It is time to bring mach the dancing banana!
 - [x] AuthJs implementation.
 - [x] Add ShadCN ui.
 - [x] Create sign up page.
-- [ ] Create sign in page.
+- [x] Create sign in page.
 - [ ] Create sign up server action.
 - [ ] Create sign in server action.
 - [ ] Creating a personal profile.
