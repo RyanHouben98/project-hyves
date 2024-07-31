@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { users } from "@/db/schema";
+import { hashPassword } from "@/utils/password-helper";
 
 type TFormData = {
   firstName: string;
@@ -21,6 +22,8 @@ const action = async (formData: TFormData) => {
       status: false,
     };
   }
+
+  formData.password = await hashPassword(formData.password);
 
   await db.insert(users).values({
     ...formData,

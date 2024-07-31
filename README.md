@@ -12,7 +12,9 @@ It is time to bring mach the dancing banana!
 - [x] Create sign in page.
 - [x] Create sign up server action.
 - [x] Create sign in server action.
-- [ ] Add password hashing (Password + Salt and BCrypt).
+- [ ] Get .env.local to work.
+- [x] Add password hashing (Password + Salt and BCrypt).
+- [ ] Add authorization endpoint.
 - [ ] Creating a personal profile.
 - [ ] Personalize profiles page.
 - [ ] Creating group pages.
