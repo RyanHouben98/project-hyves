@@ -8,14 +8,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     credentials({
       credentials: {
-        emailAddress: {},
-        password: {},
+        email: {},
+        name: {},
+        id: {},
       },
       authorize: async (credentials) => {
-        let user = null;
+        const data = {
+          email: credentials.email as string,
+          id: credentials.id as string,
+          name: credentials.name as string,
+        };
 
-        return user;
+        console.log(data);
+        return data;
       },
     }),
   ],
+  callbacks: {
+    session: async ({ session, token }) => {
+      session.user.id = token.sub!;
+      return session;
+    },
+  },
+  session: {
+    strategy: "jwt",
+  },
 });

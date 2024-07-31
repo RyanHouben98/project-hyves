@@ -3,6 +3,7 @@
 import { signIn } from "@/auth";
 import { db } from "@/db";
 import { users } from "@/db/schema";
+import { comparePasswords, hashPassword } from "@/utils/password-helper";
 import { eq } from "drizzle-orm";
 
 type TFormData = {
@@ -24,7 +25,7 @@ const action = async (formData: TFormData) => {
     };
   }
 
-  const isPasswordMatch = user.password === password;
+  const isPasswordMatch = await comparePasswords(password, user.password);
 
   if (!isPasswordMatch) {
     return {
