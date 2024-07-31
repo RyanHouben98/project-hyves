@@ -22,6 +22,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import action from "./(actions)/action";
 
 const schema = z.object({
   emailAddress: z.string().email(),
@@ -37,8 +38,17 @@ export default function SignInPage() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof schema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof schema>) => {
+    try {
+      const res = await action(values);
+      console.log(res);
+      if (res && !res?.status) {
+        // toast error
+        return;
+      }
+    } catch (error: any) {
+      console.error(error.message || "Something went wrong");
+    }
   };
   return (
     <main className="bg-gray-200 w-full h-screen">
