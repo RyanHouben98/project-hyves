@@ -19,7 +19,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           name: credentials.name as string,
         };
 
-        console.log(data);
         return data;
       },
     }),
@@ -32,5 +31,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   session: {
     strategy: "jwt",
+  },
+  pages: {
+    signIn: "/signin",
   },
 });

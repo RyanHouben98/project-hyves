@@ -1,6 +1,5 @@
-"use client";
+"use server";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,47 +8,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import action from "./(actions)/action";
+import SignInForm from "./(forms)/sign-in-form";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-const schema = z.object({
-  emailAddress: z.string().email(),
-  password: z.string().min(6),
-});
+export default async function SignInPage() {
+  const session = await auth();
 
-export default function SignInPage() {
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      emailAddress: "",
-      password: "",
-    },
-  });
+  if (session) {
+    return redirect("/");
+  }
 
-  const onSubmit = async (values: z.infer<typeof schema>) => {
-    try {
-      const res = await action(values);
-      console.log(res);
-      if (res && !res?.status) {
-        // toast error
-        return;
-      }
-    } catch (error: any) {
-      console.error(error.message || "Something went wrong");
-    }
-  };
   return (
     <main className="bg-gray-200 w-full h-screen">
       <div className="container mx-auto h-full flex flex-col gap-4 items-center justify-center">
@@ -59,46 +29,7 @@ export default function SignInPage() {
             <CardTitle>Sign in with your personal account</CardTitle>
           </CardHeader>
           <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col gap-2"
-              >
-                <FormField
-                  control={form.control}
-                  name="emailAddress"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email address</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="johndoe@email.com"
-                          type="email"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button type="submit">Sign in</Button>
-              </form>
-            </Form>
+            <SignInForm />
           </CardContent>
           <CardFooter>
             <CardDescription>
